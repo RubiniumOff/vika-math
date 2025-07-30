@@ -1,0 +1,4 @@
+
+.envx.*
+!.envx.example
+node_modules

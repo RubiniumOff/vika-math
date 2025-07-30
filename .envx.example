@@ -1,0 +1,8 @@
+DB_NAME = vika-math
+DB_USER = vika-math
+DB_PASS = simplepass
+DB_HOST = 127.0.0.1
+DB_PORT = 27017
+DB_CONN = mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}
+
+PORT = 3321
