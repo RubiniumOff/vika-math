@@ -2,6 +2,7 @@ const path = require('path');
 const dotenvx = require('@dotenvx/dotenvx');
 const express = require('express');
 const { engine } = require('express-handlebars');
+const cors = require('cors');
 
 const logger = require('./utils/logger');
 const connect_db = require('./db/db');
@@ -18,6 +19,10 @@ app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
 
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
@@ -27,8 +32,8 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(mainRouter);
-app.use(apiRouter);
+app.use('/', mainRouter);
+app.use('/api/v1/', apiRouter);
 
 const start = async () => {
     console.clear();
